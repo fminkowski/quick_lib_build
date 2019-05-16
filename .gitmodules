@@ -1,0 +1,12 @@
+[submodule "cimgui"]
+	path = cimgui
+	url = git@github.com:cimgui/cimgui.git
+	branch = master
+[submodule "glfw"]
+	path = glfw
+	url = git@github.com:glfw/glfw.git
+	branch = master
+[submodule "gl3w"]
+	path = gl3w
+	url = git@github.com:skaslev/gl3w.git
+	branch = master
