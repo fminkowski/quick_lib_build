@@ -1,3 +1,16 @@
+NAME = ./build/bin/imgui_glfw.dylib
+
+CXX = clang++
+SOURCE = ./d_cimgui.cpp \
+		./build/src/gl3w.c ./cimgui/cimgui.cpp  \
+		./cimgui/imgui/imgui.cpp ./cimgui/imgui/imgui_demo.cpp \
+		./cimgui/imgui/imgui_draw.cpp ./cimgui/imgui/imgui_widgets.cpp \
+		./build/src/imgui_impl_opengl3.cpp .//build/src/imgui_impl_glfw.cpp \
+
+INCLUDE = -I./build/include -I./cimgui/imgui/ -I./glfw/include -I./
+
+SHARED_LIBS = ./build/bin/libglfw.3.4.dylib
+
 build:
 	mkdir -p build
 	mkdir -p build/bin
@@ -12,16 +25,7 @@ build:
 	#imgui impl
 	cp ./cimgui/imgui/examples/*.cpp ./build/src
 	
-	clang++ -shared \
-		./d_cimgui.cpp \
-		./build/src/gl3w.c ./cimgui/cimgui.cpp  \
-		./cimgui/imgui/imgui.cpp ./cimgui/imgui/imgui_demo.cpp \
-		./cimgui/imgui/imgui_draw.cpp ./cimgui/imgui/imgui_widgets.cpp \
-		./build/src/imgui_impl_opengl3.cpp .//build/src/imgui_impl_glfw.cpp \
-		-I./build/include -I./cimgui/imgui/ -I./glfw/include -I./ \
-		./build/bin/libglfw.3.4.dylib \
-		-o ./build/bin/imgui_glfw.dylib \
-		-framework OpenGL
+	$(CXX) -shared $(SOURCE) $(INCLUDE) $(SHARED_LIBS) -o $(NAME) -framework OpenGL
 
 clean:
 	rm -rf build
