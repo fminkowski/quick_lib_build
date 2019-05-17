@@ -2,6 +2,6 @@
 #include <GL/gl3w.h>
 #include <stdio.h>
 
-void d_cimgui_init() {
+void dimgui_init() {
     gl3wInit();
 }
